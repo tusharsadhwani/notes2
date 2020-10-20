@@ -3,10 +3,10 @@ import "./App.css";
 
 import prettier from "prettier";
 import prettierMarkdown from "prettier/parser-markdown";
-
-var remark = require("remark");
-var recommended = require("remark-preset-lint-recommended");
-var html = require("remark-html");
+import unified from "unified";
+import remark from "remark-parse";
+import remark2rehype from "remark-rehype";
+import stringify from "rehype-stringify";
 
 const App = () => {
   const previewRef = useRef();
@@ -21,13 +21,13 @@ const App = () => {
   };
 
   const preview = (code) => {
-    remark()
-      .use(recommended)
-      .use(html)
-      .process(code, function (err, file) {
+    unified()
+      .use(remark)
+      .use(remark2rehype)
+      .use(stringify)
+      .process(code, (err, html) => {
         if (!err) {
-          const html = String(file);
-          previewRef.current.innerHTML = html;
+          previewRef.current.innerHTML = String(html);
         }
       });
   };
