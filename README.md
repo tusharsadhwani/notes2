@@ -1,1 +1,1 @@
-# notes
+# Quill: An online note taking platform
