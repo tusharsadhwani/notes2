@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useRef, useState } from "react";
+import "./App.css";
 
-function App() {
+import prettier from "prettier";
+import prettierMarkdown from "prettier/parser-markdown";
+
+const App = () => {
+  const editorRef = useRef();
+  const previewRef = useRef();
+
+  const parse = () => {
+    console.log(code);
+    const formattedCode = prettier.format(code, {
+      parser: "markdown",
+      plugins: [prettierMarkdown],
+    });
+
+    setCode(formattedCode);
+  };
+
+  const [code, setCode] = useState("");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <textarea
+        onChange={(e) => setCode(e.target.value)}
+        value={code}
+      ></textarea>
+      <div ref={previewRef}></div>
+      <button onClick={parse}>Prettify</button>
+      {/* <button onClick={parse}>Parse</button> */}
     </div>
   );
-}
+};
 
 export default App;
