@@ -9,7 +9,6 @@ const App = () => {
   const previewRef = useRef();
 
   const parse = () => {
-    console.log(code);
     const formattedCode = prettier.format(code, {
       parser: "markdown",
       plugins: [prettierMarkdown],
@@ -28,7 +27,6 @@ const App = () => {
       ></textarea>
       <div ref={previewRef}></div>
       <button onClick={parse}>Prettify</button>
-      {/* <button onClick={parse}>Parse</button> */}
     </div>
   );
 };
