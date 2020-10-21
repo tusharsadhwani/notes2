@@ -10,6 +10,7 @@ import unified from "unified";
 import Editor from "./components/Editor";
 import Header from "./components/Header";
 import Preview from "./components/Preview";
+import Title from "./components/Title";
 
 import "./App.css";
 import "./vs-light.css";
@@ -51,9 +52,9 @@ const App = () => {
     <div className="App">
       <Header />
       <div className="mainWrapper">
-        <h1>Title</h1>
+        <Title prettify={prettify} />
         <main>
-          <Editor onChange={handleChange} value={code} prettify={prettify} />
+          <Editor onChange={handleChange} value={code} />
           <Preview ref={previewRef} />
         </main>
       </div>
