@@ -13,6 +13,7 @@ import Preview from "./components/Preview";
 
 import "./App.css";
 import "./vs-light.css";
+import NoteContext from "./contexts/NoteContext";
 
 const App = () => {
   const previewRef = useRef();
@@ -48,16 +49,18 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <Header />
-      <div className="mainWrapper">
-        <h1>Title</h1>
-        <main>
-          <Editor onChange={handleChange} value={code} prettify={prettify} />
-          <Preview ref={previewRef} />
-        </main>
+    <NoteContext.Provider>
+      <div className="App">
+        <Header />
+        <div className="mainWrapper">
+          <h1>Title</h1>
+          <main>
+            <Editor onChange={handleChange} value={code} prettify={prettify} />
+            <Preview ref={previewRef} />
+          </main>
+        </div>
       </div>
-    </div>
+    </NoteContext.Provider>
   );
 };
 
