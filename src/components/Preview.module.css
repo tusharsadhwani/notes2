@@ -1,0 +1,53 @@
+.preview {
+  position: absolute;
+  width: 40%;
+  height: 95%;
+  right: 2.5%;
+  line-height: 1.5;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px #999;
+  min-height: 95%;
+  height: auto;
+  margin-bottom: 25px;
+  font-family: "Source Serif Pro", serif;
+}
+.preview h1,
+.preview h2,
+.preview h3,
+.preview h4,
+.preview h5,
+.preview h6,
+.preview p,
+.preview body {
+  margin-top: 0;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.preview h1 {
+  font-size: 2em;
+}
+.preview h2 {
+  font-size: 1.9em;
+}
+.preview h3 {
+  font-size: 1.8em;
+}
+.preview h4 {
+  font-size: 1.7em;
+}
+.preview h5 {
+  font-size: 1.6em;
+}
+.preview h6 {
+  font-size: 1.5em;
+}
+
+.preview body,
+.preview p,
+.preview ul,
+.preview ol {
+  font-size: 1.4em;
+}

@@ -1,0 +1,13 @@
+.editor {
+  position: absolute;
+  left: 15%;
+  width: 40%;
+  height: auto;
+  min-height: 95%;
+  border-radius: 10px;
+  resize: vertical;
+  outline: none;
+  overflow: hidden;
+  font-size: 1.5em;
+  font-family: "Source Code Pro", monospace;
+}
