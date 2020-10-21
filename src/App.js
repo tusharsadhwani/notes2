@@ -50,9 +50,10 @@ const App = () => {
 
   return (
     <div className="App">
-      <textarea onChange={handleChange} value={code}></textarea>
-      <div ref={previewRef}></div>
-      <button onClick={prettify}>Prettify</button>
+      <Header />
+      <Editor onChange={handleChange} value={code} />
+      <Preview ref={previewRef} />
+      <FancyButton onClick={parse} />
     </div>
   );
 };
