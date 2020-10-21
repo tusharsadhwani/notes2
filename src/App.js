@@ -1,20 +1,24 @@
 import React, { useRef, useState } from "react";
-import Header from "./components/Header"
-import Preview from "./components/Preview"
-import Editor from "./components/Editor"
-import FancyButton from "./components/FancyButton"
+import Header from "./components/Header";
+import Preview from "./components/Preview";
+import Editor from "./components/Editor";
+import FancyButton from "./components/FancyButton";
 
+import rehypePrism from "@mapbox/rehype-prism";
 import prettier from "prettier";
 import prettierMarkdown from "prettier/parser-markdown";
-import unified from "unified";
+import React, { useRef, useState } from "react";
+import stringify from "rehype-stringify";
 import remark from "remark-parse";
 import remark2rehype from "remark-rehype";
-import stringify from "rehype-stringify";
+import unified from "unified";
+
+import "./vs-light.css";
 
 const App = () => {
   const previewRef = useRef();
 
-  const parse = () => {
+  const prettify = () => {
     const formattedCode = prettier.format(code, {
       parser: "markdown",
       plugins: [prettierMarkdown],
@@ -27,6 +31,7 @@ const App = () => {
     unified()
       .use(remark)
       .use(remark2rehype)
+      .use(rehypePrism)
       .use(stringify)
       .process(code, (err, html) => {
         if (!err) {
@@ -45,10 +50,9 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header/>
-      <Editor onChange = {handleChange} value={code}/>
-      <Preview ref={previewRef}/>
-      <FancyButton onClick={parse}/>
+      <textarea onChange={handleChange} value={code}></textarea>
+      <div ref={previewRef}></div>
+      <button onClick={prettify}>Prettify</button>
     </div>
   );
 };
