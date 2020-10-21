@@ -11,40 +11,42 @@
   height: auto;
   margin-bottom: 25px;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
+.preview h1,
+.preview h2,
+.preview h3,
+.preview h4,
+.preview h5,
+.preview h6,
+.preview p,
+.preview body {
   margin-top: 0;
   margin-bottom: 10px;
   margin-left: 20px;
   margin-right: 20px;
 }
 
-h1 {
+.preview h1 {
   font-size: 2em;
 }
-h2 {
+.preview h2 {
   font-size: 1.9em;
 }
-h3 {
+.preview h3 {
   font-size: 1.8em;
 }
-h4 {
+.preview h4 {
   font-size: 1.7em;
 }
-h5 {
+.preview h5 {
   font-size: 1.6em;
 }
-h6 {
+.preview h6 {
   font-size: 1.5em;
 }
 
-p,
-ul,
-ol {
+.preview body,
+.preview p,
+.preview ul,
+.preview ol {
   font-size: 1.4em;
 }
