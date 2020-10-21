@@ -1,0 +1,50 @@
+.preview {
+  position: absolute;
+  width: 40%;
+  height: 95%;
+  right: 2.5%;
+  line-height: 1.5;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px #999;
+  min-height: 95%;
+  height: auto;
+  margin-bottom: 25px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.9em;
+}
+h3 {
+  font-size: 1.8em;
+}
+h4 {
+  font-size: 1.7em;
+}
+h5 {
+  font-size: 1.6em;
+}
+h6 {
+  font-size: 1.5em;
+}
+
+p,
+ul,
+ol {
+  font-size: 1.4em;
+}

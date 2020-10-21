@@ -1,0 +1,11 @@
+.editor {
+  position: absolute;
+  left: 15%;
+  width: 40%;
+  height: auto;
+  min-height: 95%;
+  border-radius: 10px;
+  resize: vertical;
+  outline: none;
+  overflow: hidden;
+}

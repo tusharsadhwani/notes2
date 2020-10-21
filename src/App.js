@@ -1,5 +1,8 @@
 import React, { useRef, useState } from "react";
-import "./App.css";
+import Header from "./components/Header"
+import Preview from "./components/Preview"
+import Editor from "./components/Editor"
+import FancyButton from "./components/FancyButton"
 
 import prettier from "prettier";
 import prettierMarkdown from "prettier/parser-markdown";
@@ -42,9 +45,10 @@ const App = () => {
 
   return (
     <div className="App">
-      <textarea onChange={handleChange} value={code}></textarea>
-      <div ref={previewRef}></div>
-      <button onClick={parse}>Prettify</button>
+      <Header/>
+      <Editor onChange = {handleChange} value={code}/>
+      <Preview ref={previewRef}/>
+      <FancyButton onClick={parse}/>
     </div>
   );
 };
