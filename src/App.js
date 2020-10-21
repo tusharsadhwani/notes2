@@ -1,17 +1,18 @@
-import React, { useRef, useState } from "react";
-import "./App.css";
-
+import rehypePrism from "@mapbox/rehype-prism";
 import prettier from "prettier";
 import prettierMarkdown from "prettier/parser-markdown";
-import unified from "unified";
+import React, { useRef, useState } from "react";
+import stringify from "rehype-stringify";
 import remark from "remark-parse";
 import remark2rehype from "remark-rehype";
-import stringify from "rehype-stringify";
+import unified from "unified";
+
+import "./vs-light.css";
 
 const App = () => {
   const previewRef = useRef();
 
-  const parse = () => {
+  const prettify = () => {
     const formattedCode = prettier.format(code, {
       parser: "markdown",
       plugins: [prettierMarkdown],
@@ -24,6 +25,7 @@ const App = () => {
     unified()
       .use(remark)
       .use(remark2rehype)
+      .use(rehypePrism)
       .use(stringify)
       .process(code, (err, html) => {
         if (!err) {
@@ -44,7 +46,7 @@ const App = () => {
     <div className="App">
       <textarea onChange={handleChange} value={code}></textarea>
       <div ref={previewRef}></div>
-      <button onClick={parse}>Prettify</button>
+      <button onClick={prettify}>Prettify</button>
     </div>
   );
 };
