@@ -1,9 +1,3 @@
-import React, { useRef, useState } from "react";
-import Header from "./components/Header";
-import Preview from "./components/Preview";
-import Editor from "./components/Editor";
-import FancyButton from "./components/FancyButton";
-
 import rehypePrism from "@mapbox/rehype-prism";
 import prettier from "prettier";
 import prettierMarkdown from "prettier/parser-markdown";
@@ -13,6 +7,11 @@ import remark from "remark-parse";
 import remark2rehype from "remark-rehype";
 import unified from "unified";
 
+import Editor from "./components/Editor";
+import Header from "./components/Header";
+import Preview from "./components/Preview";
+
+import "./App.css";
 import "./vs-light.css";
 
 const App = () => {
@@ -51,9 +50,8 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <Editor onChange={handleChange} value={code} />
+      <Editor onChange={handleChange} value={code} prettify={prettify} />
       <Preview ref={previewRef} />
-      <FancyButton onClick={parse} />
     </div>
   );
 };

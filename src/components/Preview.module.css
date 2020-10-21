@@ -1,16 +1,14 @@
 .preview {
-  position: absolute;
   width: 40%;
-  height: 95%;
-  right: 2.5%;
   line-height: 1.5;
   border-radius: 10px;
   border: 1px solid #ccc;
   box-shadow: 1px 1px 1px #999;
   min-height: 95%;
   height: auto;
-  margin-bottom: 25px;
   font-family: "Source Serif Pro", serif;
+  word-wrap: break-word;
+  margin: 10px;
 }
 .preview h1,
 .preview h2,
@@ -27,27 +25,31 @@
 }
 
 .preview h1 {
-  font-size: 2em;
+  font-size: 2rem;
 }
 .preview h2 {
-  font-size: 1.9em;
+  font-size: 1.9rem;
 }
 .preview h3 {
-  font-size: 1.8em;
+  font-size: 1.8rem;
 }
 .preview h4 {
-  font-size: 1.7em;
+  font-size: 1.7rem;
 }
 .preview h5 {
-  font-size: 1.6em;
+  font-size: 1.6rem;
 }
 .preview h6 {
-  font-size: 1.5em;
+  font-size: 1.5rem;
 }
 
 .preview body,
 .preview p,
 .preview ul,
 .preview ol {
-  font-size: 1.4em;
+  font-size: 1.4rem;
+}
+
+.preview li {
+  margin-left: 2rem;
 }

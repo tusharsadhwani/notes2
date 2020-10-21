@@ -1,6 +1,9 @@
 .header {
-  position: absolute;
-  width: 15%;
+  display: inline-block;
+  width: 20%;
+}
+
+.headerTitle {
   font-size: 3.5em;
   text-align: center;
   font-family: "Dancing Script", cursive;
