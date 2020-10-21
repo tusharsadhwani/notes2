@@ -10,10 +10,17 @@ import unified from "unified";
 import Editor from "./components/Editor";
 import Header from "./components/Header";
 import Preview from "./components/Preview";
+import NoteContext from "./contexts/NoteContext";
+import {
+  getNotes,
+  setNotes,
+  addNote,
+  updateNote,
+  deleteNote,
+} from "./utils/notes";
 
 import "./App.css";
 import "./vs-light.css";
-import NoteContext from "./contexts/NoteContext";
 
 const App = () => {
   const previewRef = useRef();
@@ -48,12 +55,23 @@ const App = () => {
     preview(newCode);
   };
 
+  const [selectedNote, setSelectedNote] = useState();
+  const noteContext = {
+    selectedNote,
+    setSelectedNote,
+    getNotes,
+    setNotes,
+    addNote,
+    updateNote,
+    deleteNote,
+  };
+
   return (
-    <NoteContext.Provider>
+    <NoteContext.Provider value={noteContext}>
       <div className="App">
         <Header />
         <div className="mainWrapper">
-          <h1>Title</h1>
+          <h1>{selectedNote?.title ?? "untitled"}</h1>
           <main>
             <Editor onChange={handleChange} value={code} prettify={prettify} />
             <Preview ref={previewRef} />

@@ -1,45 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import NoteContext from "../contexts/NoteContext";
+import { addNote, getNotes } from "../utils/notes";
 import FancyButton from "./FancyButton";
 
-const getNotes = () => {
-  const notesJSON = localStorage.notes;
-  if (notesJSON) return JSON.parse(notesJSON);
-  else return [];
-};
-
-const setNotes = (notes) => {
-  localStorage.notes = JSON.stringify(notes);
-};
-
-const addNote = (title, content) => {
-  const notes = getNotes();
-  notes.push({ title, content });
-  setNotes(notes);
-};
-
-const updateNote = (index, title, content) => {
-  const notes = getNotes();
-  notes[index] = { title, content };
-  setNotes(notes);
-};
-
-const deleteNote = (index) => {
-  const notes = getNotes();
-  notes.splice(index, 1);
-  setNotes(notes);
-};
-
-const NoteListItem = ({ note }) => (
-  <div style={{ padding: 20, borderBottom: "1px solid #ddd" }}>
+const NoteListItem = ({ note, onClick }) => (
+  <div
+    style={{ padding: 20, borderBottom: "1px solid #ddd" }}
+    onClick={onClick}
+  >
     {note.title}
   </div>
 );
 
 const NoteList = () => {
   const [noteList, setNoteList] = useState([]);
+  const { setSelectedNote } = useContext(NoteContext);
+
   useEffect(() => {
-    setNoteList(getNotes());
+    refreshNoteList();
   }, []);
+
+  const refreshNoteList = () => {
+    setNoteList(getNotes());
+  };
 
   return (
     <>
@@ -51,11 +34,20 @@ const NoteList = () => {
         }}
       >
         Notes
-        <FancyButton title="Add" />
+        <FancyButton
+          title="Add"
+          onClick={() => {
+            addNote("haha", "yes");
+            refreshNoteList();
+          }}
+        />
       </div>
       <div style={{ flexGrow: 1, overflowY: "auto" }}>
-        {noteList.map((note) => (
-          <NoteListItem note={note} />
+        {noteList.map((note, index) => (
+          <NoteListItem
+            note={note}
+            onClick={() => setSelectedNote(noteList[index])}
+          />
         ))}
       </div>
     </>
