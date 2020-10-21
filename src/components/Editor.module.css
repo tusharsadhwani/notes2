@@ -1,13 +1,14 @@
 .editorWrapper {
   position: relative;
   width: 50%;
-  margin: 10px;
+  margin: 0 10px;
   display: flex;
   flex-direction: column;
 }
 
 .editor {
   width: 100%;
+  padding: 20px;
   min-height: 100%;
   border-radius: 10px;
   resize: vertical;

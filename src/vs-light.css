@@ -1,15 +1,14 @@
 code[class*="language-"],
 pre[class*="language-"] {
   color: #393a34;
-  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier,
-    monospace;
+  font-family: "Source Serif Pro", serif;
   direction: ltr;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-  font-size: 0.9em;
-  line-height: 1.2em;
+  font-size: 1.4rem;
+  line-height: 1.2rem;
 
   -moz-tab-size: 4;
   -o-tab-size: 4;
