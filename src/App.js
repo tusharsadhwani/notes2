@@ -50,8 +50,13 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <Editor onChange={handleChange} value={code} prettify={prettify} />
-      <Preview ref={previewRef} />
+      <div className="mainWrapper">
+        <h1>Title</h1>
+        <main>
+          <Editor onChange={handleChange} value={code} prettify={prettify} />
+          <Preview ref={previewRef} />
+        </main>
+      </div>
     </div>
   );
 };
