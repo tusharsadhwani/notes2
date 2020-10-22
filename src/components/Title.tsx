@@ -8,7 +8,15 @@ interface TitleProps {
 }
 
 const Title: React.FC<TitleProps> = (props) => {
-  const { title, setTitle } = useContext(NoteContext);
+  const { title, setTitle, updateNote, noteId, content } = useContext(
+    NoteContext
+  );
+
+  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newTitle = event.currentTarget.value;
+    setTitle(newTitle);
+    updateNote(noteId, newTitle, content);
+  };
 
   return (
     <div className={classes.Title}>
@@ -17,7 +25,7 @@ const Title: React.FC<TitleProps> = (props) => {
           <input
             placeholder="Title"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={handleTitleChange}
           />
         </div>
         <FancyButton title="Prettify" onClick={props.prettify} />

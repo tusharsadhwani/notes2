@@ -89,13 +89,7 @@ const App = () => {
         <div className="mainWrapper">
           <Title prettify={prettify} />
           <main style={{ display: "flex", height: "100%" }}>
-            <Editor
-              onChange={(e: React.FormEvent<HTMLTextAreaElement>) =>
-                contentChange(e.currentTarget.value)
-              }
-              value={content}
-              prettify={prettify}
-            />
+            <Editor value={content} prettify={prettify} />
             <Preview />
           </main>
         </div>

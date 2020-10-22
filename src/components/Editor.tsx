@@ -1,21 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import classes from "./Editor.module.css";
 import TextareaAutosize from "react-autosize-textarea";
+import NoteContext from "src/contexts/NoteContext";
 
 interface EditorProps {
   value: string;
-  onChange: (event: React.FormEvent<HTMLTextAreaElement>) => void;
   prettify: () => void;
 }
 
-const Editor: React.FC<EditorProps> = (props) => (
-  <div className={classes.editorWrapper}>
-    <TextareaAutosize
-      onChange={props.onChange}
-      value={props.value}
-      className={classes.editor}
-    />
-  </div>
-);
+const Editor: React.FC<EditorProps> = (props) => {
+  const { contentChange, noteId, title, updateNote } = useContext(NoteContext);
+  const handleContentChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const newContent = event.currentTarget.value;
+    contentChange(newContent);
+    updateNote(noteId, title, newContent);
+  };
+
+  return (
+    <div className={classes.editorWrapper}>
+      <TextareaAutosize
+        onChange={handleContentChange}
+        value={props.value}
+        className={classes.editor}
+      />
+    </div>
+  );
+};
 
 export default Editor;
