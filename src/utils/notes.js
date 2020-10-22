@@ -10,10 +10,12 @@ export const setNotes = (notes) => {
   localStorage.notes = JSON.stringify(notes);
 };
 
-export const addNote = (title, content) => {
+export const addNote = (title = "", content = "") => {
   const notes = getNotes();
-  notes.push({ id: v4(), title, content });
+  const newNote = { id: v4(), title, content };
+  notes.push(newNote);
   setNotes(notes);
+  return newNote;
 };
 
 export const updateNote = (id, title, content) => {

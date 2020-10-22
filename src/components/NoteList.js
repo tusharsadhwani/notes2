@@ -1,23 +1,12 @@
 import React, { useContext } from "react";
 import NoteContext from "../contexts/NoteContext";
-import { addNote, getNotes } from "../utils/notes";
 import FancyButton from "./FancyButton";
-
-const NoteListItem = ({ note, onClick }) => (
-  <div
-    style={{ padding: 20, borderBottom: "1px solid #ddd" }}
-    onClick={onClick}
-  >
-    {note.title}
-  </div>
-);
+import { NoteListItem } from "./NoteListItem";
 
 const NoteList = () => {
-  const { notes, refreshNotes, selectNote } = useContext(NoteContext);
-
-  const refreshNoteList = () => {
-    refreshNotes();
-  };
+  const { notes, addNote, refreshNotes, selectNote, noteId } = useContext(
+    NoteContext
+  );
 
   return (
     <>
@@ -32,19 +21,25 @@ const NoteList = () => {
         <FancyButton
           title="Add"
           onClick={() => {
-            addNote("haha", "yes");
+            const newNote = addNote();
+            selectNote(newNote);
             refreshNotes();
           }}
         />
       </div>
       <div style={{ flexGrow: 1, overflowY: "auto" }}>
-        {notes.map((note, index) => (
-          <NoteListItem
-            key={note.id}
-            note={note}
-            onClick={() => selectNote(notes[index])}
-          />
-        ))}
+        {notes.map((note, index) => {
+          const isSelected = note.id === noteId;
+
+          return (
+            <NoteListItem
+              key={note.id}
+              note={note}
+              selected={isSelected}
+              onClick={() => selectNote(notes[index])}
+            />
+          );
+        })}
       </div>
     </>
   );
