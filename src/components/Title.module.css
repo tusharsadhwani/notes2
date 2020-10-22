@@ -3,14 +3,14 @@
 }
 
 .Title input {
+  align-self: center;
   margin-left: 10px;
-  margin-top: 15px;
   font-family: "Source Serif Pro", serif;
   font-size: 1.5rem;
   width: 100%;
   border: none;
   outline: none;
-  color:#1E1E3F;
+  color: #1e1e3f;
 }
 
 .Title section {

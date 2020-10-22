@@ -8,8 +8,8 @@ const Title = (props) => {
 
   return (
     <div className={classes.Title}>
-      <section style={{ display: "flex" }}>
-        <div style={{ flexGrow: 1 }}>
+      <section style={{ display: "flex", padding: 10, paddingBottom: 0 }}>
+        <div style={{ flexGrow: 1, display: "flex" }}>
           <input
             placeholder="Title"
             value={title}
