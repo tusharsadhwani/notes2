@@ -10,7 +10,7 @@ const NoteContext = createContext({
   contentChange: (content) => {},
   selectNote: (note) => {},
   notes: [],
-  setNotes: (notes) => {},
+  refreshNotes: () => {},
   HTML: "",
   addNote,
   updateNote,
