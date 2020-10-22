@@ -6,16 +6,16 @@
   border-radius: 5px;
   color: #aaa;
   border: 2px solid #aaa;
-  background: #ffffff;
+  background: #fff;
   transition-duration: 400ms;
   outline: none;
 }
 .fancy:hover {
-  color: #000;
-  border: 2px solid #000;
+  color: #1E1E3F;
+  border: 2px solid #1E1E3F;
 }
 
 .fancy:active {
   color: #fff;
-  background-color: #000;
+  background-color: #1E1E3F;
 }

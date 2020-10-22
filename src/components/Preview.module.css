@@ -3,7 +3,7 @@
   padding: 25px;
   line-height: 1.5;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: 2px solid #1E1E3F;
   box-shadow: 1px 1px 1px #999;
   min-height: 95%;
   height: auto;
@@ -11,6 +11,7 @@
   word-wrap: break-word;
   margin: 0 10px;
   padding: 20px;
+  color:#1E1E3F;
 }
 
 .preview h1 {

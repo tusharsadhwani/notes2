@@ -16,4 +16,6 @@
   overflow: hidden;
   font-size: 1em;
   font-family: "Source Code Pro", monospace;
+  border: 2px solid #1E1E3F;
+  color:#1E1E3F;
 }

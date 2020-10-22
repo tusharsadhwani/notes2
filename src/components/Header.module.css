@@ -6,5 +6,9 @@
 .headerTitle {
   font-size: 3.5em;
   text-align: center;
+  color:#1E1E3F;
+  font-weight:900;
+  text-shadow:2px 2px 0px white;
   font-family: "Dancing Script", cursive;
 }
+ 

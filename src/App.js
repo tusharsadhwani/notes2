@@ -13,7 +13,7 @@ import Preview from "./components/Preview";
 import Title from "./components/Title";
 
 import "./App.css";
-import "./vs-light.css";
+import "./shades-of-purple.css";
 
 const App = () => {
   const previewRef = useRef();
