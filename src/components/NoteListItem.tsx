@@ -2,7 +2,17 @@ import React, { useContext } from "react";
 import NoteContext from "../contexts/NoteContext";
 import classes from "./NoteListItem.module.css";
 
-export const NoteListItem = ({ note, selected, onClick }) => {
+interface NoteListItemProps {
+  note: Note;
+  selected: boolean;
+  onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+}
+
+export const NoteListItem: React.FC<NoteListItemProps> = ({
+  note,
+  selected,
+  onClick,
+}) => {
   const { title } = useContext(NoteContext);
 
   return (

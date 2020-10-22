@@ -3,13 +3,13 @@ import { addNote, updateNote, deleteNote } from "../utils/notes";
 
 const NoteContext = createContext({
   noteId: "",
-  setNoteId: (id) => {},
+  setNoteId: (id: string) => {},
   title: "",
-  setTitle: (title) => {},
+  setTitle: (title: string) => {},
   content: "",
-  contentChange: (content) => {},
-  selectNote: (note) => {},
-  notes: [],
+  contentChange: (content: string) => {},
+  selectNote: (note: Note) => {},
+  notes: [] as Note[],
   refreshNotes: () => {},
   HTML: "",
   addNote,

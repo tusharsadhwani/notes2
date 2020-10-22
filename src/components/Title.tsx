@@ -3,7 +3,11 @@ import classes from "./Title.module.css";
 import FancyButton from "./FancyButton";
 import NoteContext from "../contexts/NoteContext";
 
-const Title = (props) => {
+interface TitleProps {
+  prettify: () => void;
+}
+
+const Title: React.FC<TitleProps> = (props) => {
   const { title, setTitle } = useContext(NoteContext);
 
   return (

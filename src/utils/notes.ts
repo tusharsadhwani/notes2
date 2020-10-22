@@ -1,12 +1,12 @@
 import { v4 } from "uuid";
 
-export const getNotes = () => {
+export const getNotes = (): Note[] => {
   const notesJSON = localStorage.notes;
   if (notesJSON) return JSON.parse(notesJSON);
   else return [];
 };
 
-export const setNotes = (notes) => {
+export const setNotes = (notes: Note[]) => {
   localStorage.notes = JSON.stringify(notes);
 };
 
@@ -18,7 +18,7 @@ export const addNote = (title = "", content = "") => {
   return newNote;
 };
 
-export const updateNote = (id, title, content) => {
+export const updateNote = (id: string, title: string, content: string) => {
   const notes = getNotes();
   const noteIndex = notes.findIndex((note) => note.id === id);
   notes[noteIndex].title = title;
@@ -26,7 +26,7 @@ export const updateNote = (id, title, content) => {
   setNotes(notes);
 };
 
-export const deleteNote = (id) => {
+export const deleteNote = (id: string) => {
   const notes = getNotes();
   const noteIndex = notes.findIndex((note) => note.id === id);
   notes.splice(noteIndex, 1);

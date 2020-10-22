@@ -1,4 +1,3 @@
-import rehypePrism from "@mapbox/rehype-prism";
 import prettier from "prettier";
 import prettierMarkdown from "prettier/parser-markdown";
 import React, { useEffect, useState } from "react";
@@ -7,12 +6,15 @@ import remark from "remark-parse";
 import remark2rehype from "remark-rehype";
 import unified from "unified";
 
+//@ts-ignore
+import rehypePrism from "@mapbox/rehype-prism";
+
 import Editor from "./components/Editor";
 import Header from "./components/Header";
 import Preview from "./components/Preview";
 import NoteContext from "./contexts/NoteContext";
-import { getNotes, addNote, updateNote, deleteNote } from "./utils/notes";
 import Title from "./components/Title";
+import { getNotes, addNote, updateNote, deleteNote } from "./utils/notes";
 
 import "./App.css";
 import "./shades-of-purple.css";
@@ -27,7 +29,7 @@ const App = () => {
     setContent(formattedCode);
   };
 
-  const preview = (markdown) => {
+  const preview = (markdown: string) => {
     unified()
       .use(remark)
       .use(remark2rehype)
@@ -35,22 +37,22 @@ const App = () => {
       .use(stringify)
       .process(markdown, (err, html) => {
         if (!err) {
-          setHTML(html.contents);
+          setHTML(html.contents.toString());
         }
       });
   };
 
-  const contentChange = (newContent) => {
+  const contentChange = (newContent: string) => {
     setContent(newContent);
     preview(newContent);
   };
 
-  const [notes, _setNotes] = useState([]);
-  const [noteId, setNoteId] = useState();
+  const [notes, _setNotes] = useState<Note[]>([]);
+  const [noteId, setNoteId] = useState<string>("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [HTML, setHTML] = useState("");
-  const selectNote = (newNote) => {
+  const selectNote = (newNote: Note) => {
     setNoteId(newNote.id);
     setTitle(newNote.title);
     contentChange(newNote.content);
@@ -88,7 +90,9 @@ const App = () => {
           <Title prettify={prettify} />
           <main style={{ display: "flex", height: "100%" }}>
             <Editor
-              onChange={(e) => contentChange(e.target.value)}
+              onChange={(e: React.FormEvent<HTMLTextAreaElement>) =>
+                contentChange(e.currentTarget.value)
+              }
               value={content}
               prettify={prettify}
             />
