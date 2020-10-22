@@ -8,7 +8,7 @@ const NoteContext = createContext({
   setTitle: (title) => {},
   content: "",
   setContent: (content) => {},
-  contentChange: (event) => {},
+  contentChange: (content) => {},
   selectNote: (note) => {},
   notes: [],
   setNotes: (notes) => {},
