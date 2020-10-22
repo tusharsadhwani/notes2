@@ -6,7 +6,7 @@ import NoteList from "./NoteList";
 const Header = () => {
   return (
     <div className={classes.header}>
-      <p className={classes.headerTitle}>Quill</p>
+      <p className={classes.headerTitle}>Q U I L L</p>
       <NoteList />
     </div>
   );

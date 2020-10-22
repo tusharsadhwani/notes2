@@ -3,13 +3,14 @@
   justify-content: space-between;
   align-items: center;
   margin-left: 17px;
-  font-size: 2rem;
+  font-size: 3rem;
   color: #1e1e3f;
-  font-family: "Source Code Pro", monospace;
+  font-family: "Dancing Script", cursive;
   text-align: justify;
 }
 
 .notes {
   flex-grow: 1;
   overflow-y: "auto";
+  font-family: "Source Code Pro", monospace;
 }

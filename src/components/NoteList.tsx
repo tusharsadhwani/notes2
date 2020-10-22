@@ -32,7 +32,7 @@ const NoteList = () => {
   return (
     <>
       <div className={classes.pane}>
-        NOTES
+        notes
         <FancyButton
           title="Add"
           onClick={() => {
