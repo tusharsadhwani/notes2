@@ -1,3 +1,5 @@
+import { v4 } from "uuid";
+
 export const getNotes = () => {
   const notesJSON = localStorage.notes;
   if (notesJSON) return JSON.parse(notesJSON);
@@ -10,18 +12,21 @@ export const setNotes = (notes) => {
 
 export const addNote = (title, content) => {
   const notes = getNotes();
-  notes.push({ title, content });
+  notes.push({ id: v4(), title, content });
   setNotes(notes);
 };
 
-export const updateNote = (index, title, content) => {
+export const updateNote = (id, title, content) => {
   const notes = getNotes();
-  notes[index] = { title, content };
+  const noteIndex = notes.findIndex((note) => note.id === id);
+  notes[noteIndex].title = title;
+  notes[noteIndex].content = content;
   setNotes(notes);
 };
 
-export const deleteNote = (index) => {
+export const deleteNote = (id) => {
   const notes = getNotes();
-  notes.splice(index, 1);
+  const noteIndex = notes.findIndex((note) => note.id === id);
+  notes.splice(noteIndex, 1);
   setNotes(notes);
 };

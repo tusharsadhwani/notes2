@@ -14,7 +14,7 @@ const NoteListItem = ({ note, onClick }) => (
 
 const NoteList = () => {
   const [noteList, setNoteList] = useState([]);
-  const { setSelectedNote } = useContext(NoteContext);
+  const { selectNote } = useContext(NoteContext);
 
   useEffect(() => {
     refreshNoteList();
@@ -46,7 +46,7 @@ const NoteList = () => {
         {noteList.map((note, index) => (
           <NoteListItem
             note={note}
-            onClick={() => setSelectedNote(noteList[index])}
+            onClick={() => selectNote(noteList[index])}
           />
         ))}
       </div>

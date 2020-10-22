@@ -1,7 +1,7 @@
 import rehypePrism from "@mapbox/rehype-prism";
 import prettier from "prettier";
 import prettierMarkdown from "prettier/parser-markdown";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import stringify from "rehype-stringify";
 import remark from "remark-parse";
 import remark2rehype from "remark-rehype";
@@ -11,13 +11,7 @@ import Editor from "./components/Editor";
 import Header from "./components/Header";
 import Preview from "./components/Preview";
 import NoteContext from "./contexts/NoteContext";
-import {
-  getNotes,
-  setNotes,
-  addNote,
-  updateNote,
-  deleteNote,
-} from "./utils/notes";
+import { getNotes, addNote, updateNote, deleteNote } from "./utils/notes";
 
 import "./App.css";
 import "./vs-light.css";
@@ -26,41 +20,60 @@ const App = () => {
   const previewRef = useRef();
 
   const prettify = () => {
-    const formattedCode = prettier.format(code, {
+    const formattedCode = prettier.format(content, {
       parser: "markdown",
       plugins: [prettierMarkdown],
     });
 
-    setCode(formattedCode);
+    setContent(formattedCode);
   };
 
-  const preview = (code) => {
+  const preview = (markdown) => {
     unified()
       .use(remark)
       .use(remark2rehype)
       .use(rehypePrism)
       .use(stringify)
-      .process(code, (err, html) => {
+      .process(markdown, (err, html) => {
         if (!err) {
           previewRef.current.innerHTML = String(html);
         }
       });
   };
 
-  const [code, setCode] = useState("");
-
   const handleChange = (event) => {
-    const newCode = event.target.value;
-    setCode(newCode);
-    preview(newCode);
+    const newContent = event.target.value;
+    setContent(newContent);
+    preview(newContent);
   };
 
-  const [selectedNote, setSelectedNote] = useState();
+  const [notes, _setNotes] = useState([]);
+  const [noteId, setNoteId] = useState();
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const selectNote = (newNote) => {
+    setNoteId(newNote.id);
+    setTitle(newNote.title);
+    setContent(newNote.content);
+  };
+
+  const refreshNotes = () => {
+    _setNotes(getNotes());
+  };
+  useEffect(() => {
+    refreshNotes();
+  }, []);
+
   const noteContext = {
-    selectedNote,
-    setSelectedNote,
-    getNotes,
-    setNotes,
+    noteId,
+    setNoteId,
+    title,
+    setTitle,
+    content,
+    setContent,
+    selectNote,
+    notes,
+    refreshNotes,
     addNote,
     updateNote,
     deleteNote,
@@ -71,9 +84,13 @@ const App = () => {
       <div className="App">
         <Header />
         <div className="mainWrapper">
-          <h1>{selectedNote?.title ?? "untitled"}</h1>
+          <h1>{title || "untitled"}</h1>
           <main>
-            <Editor onChange={handleChange} value={code} prettify={prettify} />
+            <Editor
+              onChange={handleChange}
+              value={content}
+              prettify={prettify}
+            />
             <Preview ref={previewRef} />
           </main>
         </div>

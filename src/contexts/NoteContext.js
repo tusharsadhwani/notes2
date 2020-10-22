@@ -1,17 +1,16 @@
 import { createContext } from "react";
-import {
-  getNotes,
-  setNotes,
-  addNote,
-  updateNote,
-  deleteNote,
-} from "../utils/notes";
+import { addNote, updateNote, deleteNote } from "../utils/notes";
 
 const NoteContext = createContext({
-  selectedNote: -1,
-  setSelectedNote: () => {},
-  getNotes,
-  setNotes,
+  noteId: "",
+  setNoteId: (id) => {},
+  title: "",
+  setTitle: (title) => {},
+  content: "",
+  setContent: (content) => {},
+  selectNote: (note) => {},
+  notes: [],
+  setNotes: (notes) => {},
   addNote,
   updateNote,
   deleteNote,
