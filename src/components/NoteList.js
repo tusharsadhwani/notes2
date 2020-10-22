@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import NoteContext from "../contexts/NoteContext";
 import { addNote, getNotes } from "../utils/notes";
 import FancyButton from "./FancyButton";
@@ -13,15 +13,10 @@ const NoteListItem = ({ note, onClick }) => (
 );
 
 const NoteList = () => {
-  const [noteList, setNoteList] = useState([]);
-  const { selectNote } = useContext(NoteContext);
-
-  useEffect(() => {
-    refreshNoteList();
-  }, []);
+  const { notes, refreshNotes, selectNote } = useContext(NoteContext);
 
   const refreshNoteList = () => {
-    setNoteList(getNotes());
+    refreshNotes();
   };
 
   return (
@@ -38,16 +33,16 @@ const NoteList = () => {
           title="Add"
           onClick={() => {
             addNote("haha", "yes");
-            refreshNoteList();
+            refreshNotes();
           }}
         />
       </div>
       <div style={{ flexGrow: 1, overflowY: "auto" }}>
-        {noteList.map((note, index) => (
+        {notes.map((note, index) => (
           <NoteListItem
             key={note.id}
             note={note}
-            onClick={() => selectNote(noteList[index])}
+            onClick={() => selectNote(notes[index])}
           />
         ))}
       </div>
