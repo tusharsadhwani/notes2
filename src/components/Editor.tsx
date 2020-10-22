@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import classes from "./Editor.module.css";
 import TextareaAutosize from "react-autosize-textarea";
 import NoteContext from "src/contexts/NoteContext";
+import { debounce } from "src/utils/debounce";
 
 interface EditorProps {
   value: string;
@@ -15,7 +16,9 @@ const Editor: React.FC<EditorProps> = (props) => {
   ) => {
     const newContent = event.currentTarget.value;
     contentChange(newContent);
-    updateNote(noteId, title, newContent);
+    debounce("update content", () => {
+      updateNote(noteId, title, newContent);
+    });
   };
 
   return (

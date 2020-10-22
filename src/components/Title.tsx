@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import classes from "./Title.module.css";
 import FancyButton from "./FancyButton";
 import NoteContext from "../contexts/NoteContext";
+import { debounce } from "src/utils/debounce";
 
 interface TitleProps {
   prettify: () => void;
@@ -15,7 +16,9 @@ const Title: React.FC<TitleProps> = (props) => {
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newTitle = event.currentTarget.value;
     setTitle(newTitle);
-    updateNote(noteId, newTitle, content);
+    debounce("update title", () => {
+      updateNote(noteId, newTitle, content);
+    });
   };
 
   return (
