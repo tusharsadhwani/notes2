@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import NoteContext from "../contexts/NoteContext";
 import FancyButton from "./FancyButton";
 import { NoteListItem } from "./NoteListItem";
@@ -9,6 +9,26 @@ const NoteList = () => {
     NoteContext
   );
 
+  const addNewNote = useCallback(() => {
+    const newNote = addNote();
+    selectNote(newNote);
+    refreshNotes();
+  }, [addNote, refreshNotes, selectNote]);
+
+  const [defaultNoteSelected, setDefaultNoteSelected] = useState(false);
+
+  useEffect(() => {
+    if (notes) {
+      if (notes.length === 0) {
+        addNewNote();
+      }
+      if (!defaultNoteSelected) {
+        if (notes[0]) selectNote(notes[0]);
+        setDefaultNoteSelected(true);
+      }
+    }
+  }, [notes, defaultNoteSelected, addNewNote, selectNote]);
+
   return (
     <>
       <div className={classes.pane}>
@@ -16,25 +36,25 @@ const NoteList = () => {
         <FancyButton
           title="Add"
           onClick={() => {
-            const newNote = addNote();
-            selectNote(newNote);
-            refreshNotes();
+            addNewNote();
           }}
         />
       </div>
       <div className={classes.notes}>
-        {notes.map((note, index) => {
-          const isSelected = note.id === noteId;
+        {notes
+          ? notes.map((note, index) => {
+              const isSelected = note.id === noteId;
 
-          return (
-            <NoteListItem
-              key={note.id}
-              note={note}
-              selected={isSelected}
-              onClick={() => selectNote(notes[index])}
-            />
-          );
-        })}
+              return (
+                <NoteListItem
+                  key={note.id}
+                  note={note}
+                  selected={isSelected}
+                  onClick={() => selectNote(notes[index])}
+                />
+              );
+            })
+          : null}
       </div>
     </>
   );

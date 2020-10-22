@@ -47,7 +47,7 @@ const App = () => {
     preview(newContent);
   };
 
-  const [notes, _setNotes] = useState<Note[]>([]);
+  const [notes, _setNotes] = useState<Note[]>();
   const [noteId, setNoteId] = useState<string>("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");

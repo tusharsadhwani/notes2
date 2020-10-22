@@ -9,7 +9,7 @@ const NoteContext = createContext({
   content: "",
   contentChange: (content: string) => {},
   selectNote: (note: Note) => {},
-  notes: [] as Note[],
+  notes: undefined as Note[] | undefined,
   refreshNotes: () => {},
   HTML: "",
   addNote,
