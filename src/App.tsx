@@ -18,15 +18,19 @@ import { getNotes, addNote, updateNote, deleteNote } from "./utils/notes";
 
 import "./App.css";
 import "./shades-of-purple.css";
+import { debounce } from "./utils/debounce";
 
 const App = () => {
   const prettify = () => {
-    const formattedCode = prettier.format(content, {
+    const formattedContent = prettier.format(content, {
       parser: "markdown",
       plugins: [prettierMarkdown],
     });
 
-    setContent(formattedCode);
+    setContent(formattedContent);
+    debounce("update content", () => {
+      updateNote(noteId, title, formattedContent);
+    });
   };
 
   const preview = (markdown: string) => {
