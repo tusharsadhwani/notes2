@@ -10,6 +10,7 @@
 .editor {
   width: 100%;
   min-height: 100%;
+  max-height: 100px; /* fixes overflow for some reason */
   padding: 20px;
   border-radius: 10px;
   resize: vertical;
@@ -19,4 +20,5 @@
   font-family: "Source Code Pro", monospace;
   border: 2px solid #1e1e3f;
   color: #1e1e3f;
+  word-break: break-all;
 }
