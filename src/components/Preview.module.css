@@ -12,8 +12,7 @@
   box-shadow: 1px 1px 1px #999;
   line-height: 1.5;
   font-family: "Source Serif Pro", serif;
-  word-wrap: break-word;
-  word-break: break-all;
+  word-break: break-word;
   padding: 20px;
   color: #1e1e3f;
   overflow: auto;
