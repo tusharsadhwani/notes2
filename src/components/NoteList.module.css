@@ -1,0 +1,15 @@
+.pane {
+  display: "flex";
+  justify-content: "space-between";
+  align-items: "center";
+  margin-left: 17px;
+  font-size: 2rem;
+  color: #1e1e3f;
+  font-family: "Source Code Pro", monospace;
+  text-align: justify;
+}
+
+.notes {
+  flex-grow: 1;
+  overflow-y: "auto";
+}
