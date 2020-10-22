@@ -1,8 +1,8 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import classes from "./Editor.module.css";
 import TextareaAutosize from "react-autosize-textarea";
 
-const Editor = forwardRef((props, ref) => (
+const Editor = (props) => (
   <div className={classes.editorWrapper}>
     <TextareaAutosize
       onChange={props.onChange}
@@ -10,6 +10,6 @@ const Editor = forwardRef((props, ref) => (
       className={classes.editor}
     />
   </div>
-));
+);
 
 export default Editor;

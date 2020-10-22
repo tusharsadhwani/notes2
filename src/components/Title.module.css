@@ -1,0 +1,18 @@
+.Title {
+  display: flex;
+}
+
+.Title input {
+  margin-left: 10px;
+  margin-top: 15px;
+  font-family: "Source Serif Pro", serif;
+  font-size: 1.5rem;
+  width: 100%;
+  border: none;
+  outline: none;
+  color:#1E1E3F;
+}
+
+.Title section {
+  width: 50%;
+}

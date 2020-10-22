@@ -1,7 +1,7 @@
 import rehypePrism from "@mapbox/rehype-prism";
 import prettier from "prettier";
 import prettierMarkdown from "prettier/parser-markdown";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import stringify from "rehype-stringify";
 import remark from "remark-parse";
 import remark2rehype from "remark-rehype";
@@ -12,13 +12,12 @@ import Header from "./components/Header";
 import Preview from "./components/Preview";
 import NoteContext from "./contexts/NoteContext";
 import { getNotes, addNote, updateNote, deleteNote } from "./utils/notes";
+import Title from "./components/Title";
 
 import "./App.css";
-import "./vs-light.css";
+import "./shades-of-purple.css";
 
 const App = () => {
-  const previewRef = useRef();
-
   const prettify = () => {
     const formattedCode = prettier.format(content, {
       parser: "markdown",
@@ -36,13 +35,12 @@ const App = () => {
       .use(stringify)
       .process(markdown, (err, html) => {
         if (!err) {
-          previewRef.current.innerHTML = String(html);
+          setHTML(html.contents);
         }
       });
   };
 
-  const handleChange = (event) => {
-    const newContent = event.target.value;
+  const contentChange = (newContent) => {
     setContent(newContent);
     preview(newContent);
   };
@@ -51,10 +49,11 @@ const App = () => {
   const [noteId, setNoteId] = useState();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [HTML, setHTML] = useState("");
   const selectNote = (newNote) => {
     setNoteId(newNote.id);
     setTitle(newNote.title);
-    setContent(newNote.content);
+    contentChange(newNote.content);
   };
 
   const refreshNotes = () => {
@@ -77,6 +76,8 @@ const App = () => {
     addNote,
     updateNote,
     deleteNote,
+    contentChange,
+    HTML,
   };
 
   return (
@@ -84,14 +85,14 @@ const App = () => {
       <div className="App">
         <Header />
         <div className="mainWrapper">
-          <h1>{title || "untitled"}</h1>
-          <main>
+          <Title prettify={prettify} />
+          <main style={{ display: "flex", height: "100%" }}>
             <Editor
-              onChange={handleChange}
+              onChange={(e) => contentChange(e.target.value)}
               value={content}
               prettify={prettify}
             />
-            <Preview ref={previewRef} />
+            <Preview />
           </main>
         </div>
       </div>

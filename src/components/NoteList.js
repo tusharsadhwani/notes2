@@ -45,6 +45,7 @@ const NoteList = () => {
       <div style={{ flexGrow: 1, overflowY: "auto" }}>
         {noteList.map((note, index) => (
           <NoteListItem
+            key={note.id}
             note={note}
             onClick={() => selectNote(noteList[index])}
           />
