@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import NoteContext from "../contexts/NoteContext";
 import FancyButton from "./FancyButton";
 import { NoteListItem } from "./NoteListItem";
+import classes from "./NoteList.module.css";
 
 const NoteList = () => {
   const { notes, addNote, refreshNotes, selectNote, noteId } = useContext(
@@ -10,14 +11,8 @@ const NoteList = () => {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        Notes
+      <div className={classes.pane}>
+        NOTES
         <FancyButton
           title="Add"
           onClick={() => {
@@ -27,7 +22,7 @@ const NoteList = () => {
           }}
         />
       </div>
-      <div style={{ flexGrow: 1, overflowY: "auto" }}>
+      <div className={classes.notes}>
         {notes.map((note, index) => {
           const isSelected = note.id === noteId;
 
